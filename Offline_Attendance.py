@@ -46,7 +46,7 @@ timezone_kst = timezone(timedelta(hours=9))
 datetime_kst = datetime_utc.astimezone(timezone_kst)
 
 ### 강의일자 list
-date_list = [datetime(2023, 3, 6, 11, 0, 0, tzinfo=timezone_kst)]
+date_list = [datetime(2023, 3, 7, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 9, 11, 0, 0, tzinfo=timezone_kst)]
 
 ### 참석인원 제한
 student_limit = 50
@@ -66,7 +66,7 @@ else:
     st.title(date_string + " 강의 대면 참석 신청")
     
     # 현재 신청자 수 목록 조회 쿼리
-    applycount_sql = f"SELECT count(*) FROM apply_test WHERE attend_date = '{date_string}' and canceled = False"
+    applycount_sql = f"SELECT count(*) FROM apply WHERE attend_date = '{date_string}' and canceled = False"
     # 만약 신청자 수 미달일 경우:
     if run_query(applycount_sql).iloc[0]['count'] < student_limit:
         # 신청
@@ -85,12 +85,12 @@ else:
                         st.error("비밀번호 길이를 다시 확인해주세요.")
                     else:
                         # 이미 신청 기록이 있는지 확인
-                        check_sql = f"SELECT * FROM apply_test WHERE sid = '{sid}' and attend_date = '{date_string}' and canceled = False"
+                        check_sql = f"SELECT * FROM apply WHERE sid = '{sid}' and attend_date = '{date_string}' and canceled = False"
                         if run_query(check_sql).empty:
                             # 신청 기록이 없을 경우 신청
                             datetime_utc = datetime.utcnow()
                             apply_timestamp = datetime_utc.astimezone(timezone_kst)
-                            apply_sql = f"INSERT INTO apply_test (sname, sid, attend_date, apply_timestamp, secret) VALUES ('{sname}','{sid}','{date_string}','{apply_timestamp}','{spwd}')"
+                            apply_sql = f"INSERT INTO apply (sname, sid, attend_date, apply_timestamp, secret) VALUES ('{sname}','{sid}','{date_string}','{apply_timestamp}','{spwd}')"
                             run_tx(apply_sql)
                             st.success("신청 완료!")
                         else:
@@ -118,7 +118,7 @@ else:
                         st.error("비밀번호 길이를 다시 확인해주세요.")
                     else:
                         # 이미 신청 기록이 있는지 확인
-                        check_sql = f"SELECT aid, sname as 이름, sid as 학번, attend_date as 참석일자 FROM apply_test WHERE sid = '{sid}' and attend_date = '{date_string}' and canceled = False and secret = '{spwd}'"
+                        check_sql = f"SELECT aid, sname as 이름, sid as 학번, attend_date as 참석일자 FROM apply WHERE sid = '{sid}' and attend_date = '{date_string}' and canceled = False and secret = '{spwd}'"
                         df_check = run_query(check_sql)
                         if df_check.empty:
                             st.error("해당 학번과 비밀번호로 신청된 정보가 없습니다.")
@@ -138,14 +138,14 @@ else:
                         st.error("비밀번호 길이를 다시 확인해주세요.")
                     else:
                         # 이미 신청 기록이 있는지 확인
-                        check_sql = f"SELECT aid, sname as 이름, sid as 학번, attend_date as 참석일자 FROM apply_test WHERE sid = '{sid}' and attend_date = '{date_string}' and canceled = False and secret = '{spwd}'"
+                        check_sql = f"SELECT aid, sname as 이름, sid as 학번, attend_date as 참석일자 FROM apply WHERE sid = '{sid}' and attend_date = '{date_string}' and canceled = False and secret = '{spwd}'"
                         df_check = run_query(check_sql)
                         if df_check.empty:
                             st.error("해당 학번과 비밀번호로 신청된 정보가 없습니다.")
                         else:
                             # 신청 기록이 있을 경우
                             aid = df_check.iloc[0]['aid']
-                            cancel_sql = f"UPDATE apply_test SET canceled = True WHERE aid = '{aid}'"
+                            cancel_sql = f"UPDATE apply SET canceled = True WHERE aid = '{aid}'"
                             run_tx(cancel_sql)
                             st.success("취소 완료!")
                 else:
