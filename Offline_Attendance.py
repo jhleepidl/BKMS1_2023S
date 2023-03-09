@@ -59,7 +59,7 @@ for i in date_list:
 
 date_string = i.strftime("%Y-%m-%d")
 if i < datetime_kst:
-    st.title("현재 등록된 강의 일자가 없습니다.")
+    st.title("현재 등록된 대면 강의 일자가 없습니다.")
 elif i > (datetime_kst + timedelta(hours=24)): 
     st.title("다음 대면 강의 일자: " + date_string)
 else:
