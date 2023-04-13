@@ -46,7 +46,7 @@ timezone_kst = timezone(timedelta(hours=9))
 datetime_kst = datetime_utc.astimezone(timezone_kst)
 
 ### 강의일자 list
-date_list = [datetime(2023, 3, 7, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 9, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 23, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 28, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 30, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 4, 4, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 4, 6, 11, 0, 0, tzinfo=timezone_kst)]
+date_list = [datetime(2023, 3, 7, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 9, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 23, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 28, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 30, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 4, 4, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 4, 6, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 4, 25, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 4, 27, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 5, 2, 11, 0, 0, tzinfo=timezone_kst)]
 
 ### 참석인원 제한
 student_limit = 50
@@ -60,7 +60,7 @@ for i in date_list:
 date_string = i.strftime("%Y-%m-%d")
 if i < datetime_kst:
     st.title("현재 등록된 대면 강의 일자가 없습니다.")
-elif i > (datetime_kst + timedelta(hours=24)): 
+elif i > (datetime_kst + timedelta(hours=48)): 
     st.title("다음 대면 강의 일자: " + date_string)
 else:
     st.title(date_string + " 강의 대면 참석 신청")
