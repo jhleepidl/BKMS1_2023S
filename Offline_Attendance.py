@@ -46,7 +46,7 @@ timezone_kst = timezone(timedelta(hours=9))
 datetime_kst = datetime_utc.astimezone(timezone_kst)
 
 ### 강의일자 list
-date_list = [datetime(2023, 3, 7, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 9, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 23, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 28, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 30, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 4, 4, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 4, 6, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 4, 25, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 4, 27, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 5, 2, 11, 0, 0, tzinfo=timezone_kst)]
+date_list = [datetime(2023, 3, 7, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 9, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 23, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 28, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 3, 30, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 4, 4, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 4, 6, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 4, 25, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 4, 27, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 5, 2, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 5, 16, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 5, 18, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 5, 23, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 5, 25, 11, 0, 0, tzinfo=timezone_kst), datetime(2023, 6, 1, 11, 0, 0, tzinfo=timezone_kst)]
 
 ### 참석인원 제한
 student_limit = 50
